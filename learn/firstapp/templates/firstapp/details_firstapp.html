@@ -1,11 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Details of FirstAPP</title>
-</head>
-<body>
-    <h1>Details page of first app</h1>
-</body>
-</html>
+{% extends "layout.html" %}
+{% block title %} FirstApp Home Page {% endblock %}
+<h1>First App | Home Page</h1>
+{% block content %}
+<div class="grid grid-cols-3 gap-5 m-4">
+  {% for user in users %}
+  <div class="">
+    <img class="rounded-md h-44" src="{{user.image.url}}" alt="user_image" />
+    <h2 class="text-2xl font-bold">{{user.username}}</h2>
+    <h2>{{user.date_added}}</h2>
+    <h2>{{user.work_role}}</h2>
+    <a href="{% url 'details_firstapp' user.id %}">
+      <button
+        class="p-4 my-2 font-bold bg-orange-500 hover:bg-orange-600 rounded-sm"
+      >
+        {{user.id}} - {{user.type}}
+      </button>
+    </a>
+    
+  </div>
+  
+  {% endfor %}
+</div>
+{% endblock %}
